@@ -1,6 +1,6 @@
 {
     "name": "josephlavin/local-eventing",
-    "description": "In object evening execution",
+    "description": "In object eventing execution",
     "require-dev": {
         "phpunit/phpunit": "^5.5"
     },
