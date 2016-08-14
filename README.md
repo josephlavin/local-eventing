@@ -45,8 +45,6 @@ $ composer require josephlavin/local-eventing
 
 ## Use Case
 
-I found myself wanting to use a trait that hooked into an a classes "events".  However that system did not broadcast an event that could be listened to.  Using the LocalEventing trait I am able to create traits that contain methods for specific events.
-
 Lets say we have a basic model type class which fires local events:
 
 ```php
