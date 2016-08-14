@@ -1,7 +1,6 @@
 # Local Eventing
---------------------------
 
-A simple php trait that allows for execution of methods in an eventing like fashion.  For use when creating a full eventing / listener classes may be a tad too much.
+A simple php trait that allows for execution of local methods in an eventing like fashion.  Add mehods to a class using this trait following a naming convention and they will be executed when the local event is fired.
 
 ```php
 use josephlavin\localEventing\LocalEventing;
@@ -28,17 +27,25 @@ class dummy
 }
 ```
 
+## Event Listener Method Naming Convention
+
+All event listener methods must be named in this fashion:
+`__onLocalEvent_[event]_[description]()`
+
+- `__onLocalEvent_` : namespace for the local eventing system
+- `[event]`: the same string given to `$this->fireLocalEvent('event')`
+- `[description]`: a simple description of what this method does
+
+
 ## Installation
--------------------------
 
 ```
 $ composer require josephlavin/local-eventing
 ```
 
-## Why?
--------------------------
+## Use Case
 
-I found myself wanting to use a trait that hooked into an existing systems events, but that system did not broadcast an event that could be listened to.  Using this local eventing I am able to create a simple trait that hooks into a that base system.
+I found myself wanting to use a trait that hooked into an a classes "events".  However that system did not broadcast an event that could be listened to.  Using the LocalEventing trait I am able to create traits that contain methods for specific events.
 
 Lets say we have a basic model type class which fires local events:
 
@@ -61,7 +68,7 @@ class BaseModel
 }
 ```
 
-We can create another trait that relies on the LocalEventing trait and adds `__onLocalEvent__` methods.  Notice how this trait makes an abstract method `_require_trait_LocalEventing`.  This serves as a reminder to the developer that this trait relies on the `LocalEventing` trait to work properly.
+We can create another trait that relies on the LocalEventing trait and adds `__onLocalEvent__` methods.  Notice how this trait has an abstract method `_require_trait_LocalEventing`.  This serves as a reminder to the developer that this trait relies on the `LocalEventing` trait to work properly.
 
 ```php
 trait UuidPrimaryKey
@@ -76,11 +83,11 @@ trait UuidPrimaryKey
 }
 ```
 
-Now any of my models (that extend base model) can use the `UuidPrimaryKey` trait and have that functionality.
+Now any models (that extend base model) can use the `UuidPrimaryKey` trait and gain that functionality.
 
 ```php
 class MyModel extends BaseModel
 {
-    use uuid;
+    use UuidPrimaryKey;
 }
 ````
