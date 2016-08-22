@@ -1,6 +1,6 @@
 # Local Eventing
 
-A simple php trait that allows for execution of local methods in an eventing like fashion.  Add mehods to a class using this trait following a naming convention and they will be executed when the local event is fired.
+A simple php trait that allows for execution of local methods in an eventing like fashion.  Add methods to a class using this trait following a naming convention and they will be executed when the local event is fired.
 
 ```php
 use josephlavin\localEventing\LocalEventing;
